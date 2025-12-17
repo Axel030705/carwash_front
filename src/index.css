@@ -1,0 +1,46 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+}
+
+#root {
+  background-color: #f7f6f8;
+
+    /* Variables de fonts */
+   --montserrat: 'Montserrat', sans-serif;
+   --sanserif: 'Sanseriffic', sans-serif;
+
+
+   /* Variables de colores de texto */
+   --subtitle-color: #8a8a8a;
+}
+
+/* pa quitar las flechas del input type number */
+/* Chrome, Edge, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield; 
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+
+}
+
+select {
+  cursor: pointer;
+}

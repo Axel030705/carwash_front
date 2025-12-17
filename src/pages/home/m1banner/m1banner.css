@@ -1,0 +1,94 @@
+.m1banner{
+    width: 100%;
+    height: auto;
+    margin-top: 2%;
+}
+
+.m1banner-container{
+    position: relative;
+    max-width: 2560px;
+    height: clamp(500px, 80dvh, 900px);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.m1banner-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.30);
+  z-index: 1;
+}
+
+
+.m1banner-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.m1banner-content{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.m1banner-title{
+    font-family: var(--montserrat);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3.45vw, 5.5rem);
+}
+
+.m1banner-text{
+    font-family: var(--montserrat);
+    font-weight: 500;
+    font-size: clamp(1rem, 1.4vw, 2.3rem);
+    margin-top: 10px;
+}
+
+.m1banner-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    margin-top: 3%;
+}
+
+.m1banner-button{
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(0.8rem, 1.15vw, 1.8rem);
+    padding: 1% 2%;
+    border-radius: 10px;
+    background-color: #127eed;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.m1banner-button2 {
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+    padding: 1% 2%;
+    border-radius: 10px;
+    color: white;
+    
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+

@@ -1,0 +1,58 @@
+
+
+.m2banner{
+    width: 100%;
+    height: auto;
+    margin-top: 2%;
+}
+
+.m2banner-container{
+    position: relative;
+    max-width: 2560px;
+    margin: 0 auto;
+    height: 50dvh;
+    overflow: hidden;
+}
+
+.m2banner-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+.m2banner-content{
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.m2banner-title{
+    margin: 0;
+    font-size: clamp(1.5rem, 2.5vw, 4rem);
+    font-weight: 700;
+    font-family: var(--montserrat);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.m2banner-text{
+    width: 40%;
+    margin: 0;
+    font-size: clamp(.8rem, 1.15vw, 1.9rem);
+    font-weight: 500;
+    font-family: var(--montserrat);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
