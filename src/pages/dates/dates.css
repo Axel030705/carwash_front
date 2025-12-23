@@ -10,6 +10,11 @@
     height: auto;
     margin: 0 auto;
     margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    gap: 3%;
+    align-items: flex-start;
 }
 
 .dates-selection-container{
@@ -181,6 +186,177 @@
     color: black;
 }
 
+
+
+/* ========================================================================== */
+/* ================================ ORDEN RESUME ================================= */
+/* ========================================================================== */
+
+.dates-resume-container{
+    position: sticky;
+    top: 15%;
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5em, 2vw, 3em);
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--back-blue);
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+.dates-resume-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 800;
+    font-size: clamp(1rem, 1.35vw, 2.2rem);
+    color: black;
+}
+
+.dates-resume-line{
+    width: 100%;
+    height: 1px;
+        background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--back-blue) 5%,
+        var(--back-blue) 95%,
+        transparent 100%
+    );
+}
+
+.dates-resume-section1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-resume-service-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1.1vw, 1.6rem);
+    color: black;
+}
+
+.dates-resume-service-tag{
+    margin: 2% 0 0 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1.1vw, 1.3rem);
+    color: var(--subtitle-color);
+}
+
+.dates-resume-price{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1.1vw, 1.6rem);
+    color: black;
+}
+
+.dates-resume-section2{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-resume-date-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1vw, 1.6rem);
+    color: black;
+}
+
+.dates-resume-date{
+    margin: 2% 0 0 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, .9vw, 1.4rem);
+    color: var(--subtitle-color);
+}
+
+.dates-resume-edit{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 500;
+    font-size: clamp(.8rem, 1.1vw, 1.5rem);
+    cursor: pointer;
+}
+
+.dates-resume-edit:hover{
+    text-shadow: 0 0 5px var(--back-blue);
+}
+
+
+.dates-resume-total{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-resume-total-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1.15vw, 1.8rem);
+    color: black;
+}
+
+.dates-resume-total-price{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(.8rem, 1.9vw, 2.5rem);
+    color: black;
+}
+
+
+.dates-resume-button{
+    margin-top: 5%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(.5em, 1vw, 1.5em);
+    background-color: var(--back-blue-dark);
+    font-size: clamp(.8rem, 1.3vw, 1.9rem);
+    font-family: var(--montserrat);
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    padding: 5% 0;
+    cursor: pointer;
+}
+
+.dates-resume-button-icon{
+    width: 5%;
+    height: auto;
+    filter: invert(1);
+}
+
+.dates-resume-button:hover{
+    background-color: var(--back-blue-darker);
+}
 
 
 /* ========================================================================== */

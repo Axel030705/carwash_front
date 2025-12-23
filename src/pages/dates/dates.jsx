@@ -3,6 +3,7 @@ import React from 'react'
 // personal imports
 import './dates.css'
 import carwash from '@/assets/navbar/carwash.svg'
+import datearrow from '@/assets/dates/arrow-right.svg'
 
 export default function dates() {
   return (
@@ -21,7 +22,7 @@ export default function dates() {
                         {Array.from({ length: 5 }).map((_, index) => (
                             <label key={index} className="dates-services-option">
                             <div className="dates-services-opcion-section1">
-                                <img src={carwash} alt="" className="dates-services-icon" />
+                                <img src={carwash} alt="" loading="lazy" className="dates-services-icon" />
                                 <input
                                 type="radio"
                                 name="service"
@@ -44,7 +45,31 @@ export default function dates() {
                 
             </div>
             <div className='dates-resume-container'>
-
+                <h3 className='dates-resume-title'>Resumen de Reserva</h3>
+                <div className='dates-resume-line'></div>
+                <div className='dates-resume-section1'>
+                    <div className='dates-resume-service-container'>
+                        <p className='dates-resume-service-title'>Lavado completo</p>
+                        <p className='dates-resume-service-tag'>Destacado</p>
+                    </div>
+                    <p className='dates-resume-price'>$25.00</p>
+                </div>
+                <div className='dates-resume-section2'>
+                    <div className='dates-resume-date-container'>
+                        <p className='dates-resume-date-title'>Cita</p>
+                        <p className='dates-resume-date'>01/01/2023 - 10:00 AM</p>
+                    </div>
+                    <a href="" className='dates-resume-edit'>Editar</a>
+                </div>
+                <div className='dates-resume-line'></div>
+                <div className='dates-resume-total'>
+                    <p className='dates-resume-total-title'>Total a pagar</p>
+                    <p className='dates-resume-total-price'>$25</p>
+                </div>
+                <button className='dates-resume-button'>
+                    Confirmar Reserva 
+                    <img src={datearrow} alt="" loading='lazy' className='dates-resume-button-icon'/>
+                </button>
             </div>
         </div>
     </section>
