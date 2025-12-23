@@ -1,0 +1,209 @@
+
+.dates{
+    width: 100%;
+    height: auto;
+}
+
+.dates-container{
+    width: 95%;
+    max-width: 2560px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+.dates-selection-container{
+    width: 65%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.dates-selection-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.1vw, 3.4rem);
+    color: black;
+}
+
+.dates-selection-text{
+    margin: 1% 0 0 0;
+    font-family: var(--montserrat);
+    font-weight: 500;
+    font-size: clamp(1rem, 1.4vw, 2.1rem);
+    color: var(--subtitle-color);
+}
+
+
+/* ========================================================================== */
+/* ================================ SERVICES ================================= */
+/* ========================================================================== */
+
+
+.dates-services-container{
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5em, 1vw, 1.5em);
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--back-blue);
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 3%;
+}
+
+.dates-services-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-services-number{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.4vw, 2.1rem);
+    color: var(--back-blue-dark);
+    background-color: var(--back-blue);
+    box-sizing: border-box ;
+    padding: 1% 2%;
+    border-radius: 50px;
+}
+
+.dates-services-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.4vw, 2.1rem);
+    color: black;
+}
+
+.dates-services-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(.5em, 1vw, 1.5em);
+  margin-top: 2%;
+}
+
+.dates-services-option{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5em, 1vw, 1.5em);
+    box-sizing: border-box;
+    padding: 5%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--back-blue);
+    border-radius: 25px;
+}
+
+.dates-services-opcion-section1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-services-icon{
+    width: 15%;
+    height: auto;
+}
+
+.dates-services-custom-checkbox{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(.8rem, 1.4vw, 2.1rem);
+    color: var(--subtitle-color);
+    box-sizing: border-box;
+}
+
+.dates-services-input{
+    display: none;
+}
+
+.dates-services-checkmark {
+  border-radius: 50px;
+  border: 2px solid var(--back-blue);
+  padding: clamp(.1em, .7vw, 1.1em);
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.dates-services-input:checked + .dates-services-checkmark {
+  background-color: var(--back-blue);
+  color: white;
+  border-color: var(--back-blue);
+}
+
+.dates-services-option-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    color: black;
+}
+
+.dates-services-option-text{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 500;
+    font-size: clamp(.5rem, 1vw, 1.6rem);
+    color: var(--subtitle-color);
+}
+
+.dates-services-option-line{
+    width: 100%;
+    height: 1px;
+    background-color: var(--back-blue);
+}
+
+.dates-services-option-price{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 800;
+    font-size: clamp(1rem, 1.5vw, 2.5rem);
+    color: black;
+}
+
+
+
+/* ========================================================================== */
+/* ================================ CALENDAR ================================= */
+/* ========================================================================== */
+
+
+
+
+
+
+
+
+
+/* ========================================================================== */
+/* ================================ DATAS ================================= */
+/* ========================================================================== */
+
+
+
+
+
+
+/* ========================================================================== */
+/* ================================ PAY METHODS ================================= */
+/* ========================================================================== */
