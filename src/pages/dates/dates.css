@@ -1,4 +1,8 @@
 
+html {
+  scroll-behavior: smooth;
+}
+
 .dates{
     width: 100%;
     height: auto;
@@ -42,6 +46,41 @@
 
 
 /* ========================================================================== */
+/* ================================ GLOBALS ================================= */
+/* ========================================================================== */
+
+
+.dates-global-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
+
+.dates-global-number{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.4vw, 2.1rem);
+    color: var(--back-blue-dark);
+    background-color: var(--back-blue);
+    box-sizing: border-box ;
+    padding: 1% 2%;
+    border-radius: 50px;
+}
+
+.dates-global-title{
+    margin: 0;
+    font-family: var(--montserrat);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.4vw, 2.1rem);
+    color: black;
+}
+
+
+/* ========================================================================== */
 /* ================================ SERVICES ================================= */
 /* ========================================================================== */
 
@@ -60,35 +99,6 @@
     border-radius: 25px;
     box-sizing: border-box;
     padding: 3%;
-}
-
-.dates-services-header{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: clamp(.5em, 1vw, 1.5em);
-}
-
-.dates-services-number{
-    margin: 0;
-    font-family: var(--montserrat);
-    font-weight: 700;
-    font-size: clamp(1rem, 1.4vw, 2.1rem);
-    color: var(--back-blue-dark);
-    background-color: var(--back-blue);
-    box-sizing: border-box ;
-    padding: 1% 2%;
-    border-radius: 50px;
-}
-
-.dates-services-title{
-    margin: 0;
-    font-family: var(--montserrat);
-    font-weight: 700;
-    font-size: clamp(1rem, 1.4vw, 2.1rem);
-    color: black;
 }
 
 .dates-services-content {
@@ -185,7 +195,6 @@
     font-size: clamp(1rem, 1.5vw, 2.5rem);
     color: black;
 }
-
 
 
 /* ========================================================================== */
@@ -363,12 +372,44 @@
 /* ================================ CALENDAR ================================= */
 /* ========================================================================== */
 
+.dates-calendar-container{
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5em, 1vw, 1.5em);
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--back-blue);
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 3%;
+}
 
+.dates-calendar-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(.5em, 1vw, 1.5em);
+}
 
+.dates-calendar-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
 
-
-
-
+.dates-calendar-col {
+  flex: 1;               
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
 
 
 /* ========================================================================== */
