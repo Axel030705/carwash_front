@@ -29,7 +29,7 @@ export default function Dates() {
                 <h2 className='dates-selection-title'>Reserva tu lavado</h2>
                 <p className='dates-selection-text'>Completa el formulario en 4 simples pasos</p>
 
-                <div className='dates-services-container'>
+                <div className='dates-globals-container'>
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>1</p>
                         <h3 className='dates-global-title'>Elige tu Servicios</h3>
@@ -57,18 +57,19 @@ export default function Dates() {
                         ))}
                     </div>
                 </div>
-                <div className='dates-calendar-container' id='dates-calendar-container'>
+                <div className='dates-globals-container' id='dates-calendar-container'>
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>2</p>
                         <h3 className='dates-global-title'>Fecha y Hora</h3>
                     </div>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
                         <div className='dates-calendar-content'>
-                            <div className="dates-calendar-col">
+                            <div className="dates-calendar-col1">
                                 <StaticDatePicker 
                                 value={date}
                                 onChange={setDate}
                                 defaultValue={dayjs()}
+                                orientation='portrait'
                                 slotProps={{
                                     actionBar: {
                                         actions: [null],
@@ -79,7 +80,7 @@ export default function Dates() {
                                 }}
                                 />
                             </div>
-                            <div className="dates-calendar-col">
+                            <div className="dates-calendar-col2">
                                 <DigitalClock 
                                 value={clock}
                                 onChange={setClock}
@@ -90,7 +91,7 @@ export default function Dates() {
                                 skipDisabled
                                 sx={{
                                     flex: 1,
-                                          minHeight: 0,
+                                    minHeight: 0,
                                     overflowY: 'auto',
                                 }}
                                 />

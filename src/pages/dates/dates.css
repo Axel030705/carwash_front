@@ -50,6 +50,22 @@ html {
 /* ========================================================================== */
 
 
+.dates-globals-container{
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.5em, 1vw, 1.5em);
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--back-blue);
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 3%;
+}
+
 .dates-global-header{
     width: 100%;
     height: auto;
@@ -84,22 +100,6 @@ html {
 /* ================================ SERVICES ================================= */
 /* ========================================================================== */
 
-
-.dates-services-container{
-    margin-top: 2%;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(.5em, 1vw, 1.5em);
-    background-color: white;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--back-blue);
-    border-radius: 25px;
-    box-sizing: border-box;
-    padding: 3%;
-}
 
 .dates-services-content {
   display: grid;
@@ -404,11 +404,20 @@ html {
     flex: 1;
 }
 
-.dates-calendar-col {
-  flex: 1;               
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
+.dates-calendar-col1 {
+    width: 70%; 
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+}
+
+.dates-calendar-col2 {
+    width: fit-content; 
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
 }
 
 
@@ -424,3 +433,38 @@ html {
 /* ========================================================================== */
 /* ================================ PAY METHODS ================================= */
 /* ========================================================================== */
+
+
+
+
+
+/* ========================================================================== */
+/* ================================ MEDIA QUERYS ================================= */
+/* ========================================================================== */
+
+@media (min-width: 1600px) and (max-width: 2560px) {
+    
+    .dates-calendar-content {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        padding-bottom: 300px;
+        gap: 20%;
+    }
+
+    .dates-calendar-col1 {
+        width: 40%;
+        height: auto; 
+        transform-origin: top left; 
+        transform: scale(1.7); 
+    }
+
+    .dates-calendar-col2 {
+        width: fit-content; 
+        height: auto; 
+        transform-origin: top left; 
+        transform: scale(1.7); 
+    }
+}
