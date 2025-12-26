@@ -15,6 +15,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import './dates.css'
 import carwash from '@/assets/navbar/carwash.svg'
 import datearrow from '@/assets/dates/arrow-right.svg'
+import datemoney from '@/assets/dates/money.svg'
+import datetarjeta from '@/assets/dates/tarjeta.svg'
 
 export default function Dates() {
 
@@ -99,6 +101,92 @@ export default function Dates() {
 
                         </div>
                     </LocalizationProvider>
+                </div>
+                <div className='dates-globals-container' id='dates-calendar-container'>
+                    <div className='dates-global-header'>
+                        <p className='dates-global-number'>3</p>
+                        <h3 className='dates-global-title'>Ingresa tus Datos</h3>
+                    </div>
+                    <div className='dates-input-grid'>
+                        <div className="dates-input-group">
+                            <label htmlFor="nombre" className="dates-input-label">Nombre Completo</label>
+                            <div className="dates-input-wrapper">
+                                <span className="dates-input-icon">👤</span>
+                                <input
+                                type="text"
+                                id="nombre"
+                                className="dates-input"
+                                placeholder="Juan Pérez"
+                                />
+                            </div>
+                        </div>
+                        <div className="dates-input-group">
+                            <label htmlFor="nombre" className="dates-input-label">Telefono (Whatsapp)</label>
+                            <div className="dates-input-wrapper">
+                                <span className="dates-input-icon">📞</span>
+                                <input
+                                type="text"
+                                id="telefono"
+                                className="dates-input"
+                                placeholder=" 696 116 2732"
+                                />
+                            </div>
+                        </div>
+                        <div className="dates-input-group">
+                            <label htmlFor="nombre" className="dates-input-label">Marca y Modelo</label>
+                            <div className="dates-input-wrapper">
+                                <span className="dates-input-icon">🚘</span>
+                                <input
+                                type="text"
+                                id="auto"
+                                className="dates-input"
+                                placeholder="Ej: Honda Civic 2022"
+                                />
+                            </div>
+                        </div>
+                        <div className="dates-input-group">
+                            <label htmlFor="nombre" className="dates-input-label">Placas (opcional)</label>
+                            <div className="dates-input-wrapper">
+                                <span className="dates-input-icon">🪪</span>
+                                <input
+                                type="text"
+                                id="placa"
+                                className="dates-input"
+                                placeholder="GTA-619-11"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='dates-globals-container'>
+                    <div className='dates-global-header'>
+                        <p className='dates-global-number'>4</p>
+                        <h3 className='dates-global-title'>Metodo de Pago</h3>
+                    </div>
+                    <div className='dates-payment-container'>
+                        <label className="dates-payment-option">
+                            <div className="dates-payment-opcion-section1">
+                                <input type="radio" id="tarjeta" name="tarjeta" className="dates-payment-input" />
+                                <span className="dates-payment-checkmark"></span>
+                                <img src={datemoney} alt="" loading="lazy" className="dates-payment-icon" />
+                                <div className='dates-payment-content'>
+                                    <strong className="dates-payment-option-title">Pagar en Linea</strong>
+                                    <p className="dates-payment-option-text">Tarjeta de Credito/Debito</p>
+                                </div>
+                            </div>
+                        </label>
+                        <label className="dates-payment-option">
+                            <div className="dates-payment-opcion-section1">
+                                <input type="radio" id="efectivo" name="efectivo" className="dates-payment-input" />
+                                <span className="dates-payment-checkmark"></span>
+                                <img src={datetarjeta} alt="" loading="lazy" className="dates-payment-icon" />
+                                <div className='dates-payment-content'>
+                                    <strong className="dates-payment-option-title">Pagar en Cita</strong>
+                                    <p className="dates-payment-option-text">Efectivo o Terminal de Pago</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div className='dates-resume-container'>
