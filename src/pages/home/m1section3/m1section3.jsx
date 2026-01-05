@@ -18,24 +18,24 @@ export default function M1section3() {
                 <button className='m1section3-media-button'>
                     <img src={ws} alt="" className='m1section3-media-icon'/>
                     <div className='m1section3-media-ajuste'>
-                        <span>Whatsapp</span>
-                        <p>Agenda rapida y directa</p>
+                        <span className='m1section3-media-button-title'>Whatsapp</span>
+                        <p className='m1section3-media-button-text'>Agenda rapida y directa</p>
                     </div>
                     <img src={arrow} alt="" className='m1section3-media-arrow'/>
                 </button>
-                <button className='m1section3-media-button'>
+                <button className='m1section3-media-button2'>
                     <img src={ig} alt="" className='m1section3-media-icon'/>
                     <div className='m1section3-media-ajuste'>
-                        <span>Instagram</span>
-                        <p>Mira nuestros resultados</p>
+                        <span className='m1section3-media-button-title'>Instagram</span>
+                        <p className='m1section3-media-button-text'>Mira nuestros resultados</p>
                     </div>
                     <img src={arrow} alt="" className='m1section3-media-arrow'/>
                 </button>
-                <button className='m1section3-media-button'>
+                <button className='m1section3-media-button2'>
                     <img src={fb} alt="" className='m1section3-media-icon'/>
                     <div className='m1section3-media-ajuste'>
-                        <span>Facebook</span>
-                        <p>Unete a nuestra comunidad</p>
+                        <span className='m1section3-media-button-title'>Facebook</span>
+                        <p className='m1section3-media-button-text'>Unete a nuestra comunidad</p>
                     </div>
                     <img src={arrow} alt="" className='m1section3-media-arrow'/>
                 </button>

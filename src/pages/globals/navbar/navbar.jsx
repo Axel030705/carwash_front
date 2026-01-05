@@ -18,8 +18,8 @@ export default function Navbar() {
             <div className='navbar-link-container'>
                 <NavLink to="/" className='navbar-link'>Inicio</NavLink>
                 <NavLink to="/servicios" className='navbar-link'>Servicios</NavLink>
-                <NavLink to="/contacto" className='navbar-link'>Contacto</NavLink>
-                <NavLink to="/agendar" className='navbar-link2'>Agendar Cita</NavLink>
+                <NavLink to="/faq" className='navbar-link'>FAQ</NavLink>
+                <NavLink to="/dates" className='navbar-link2'>Agendar Cita</NavLink>
                 <NavLink to="/login" className='navbar-link2'>Login</NavLink>
             </div>
         </div>

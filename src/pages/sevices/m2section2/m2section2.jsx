@@ -23,29 +23,18 @@ export default function m2section2() {
                     spaceBetween={50}
                     pagination={{ clickable: true }}
                     speed={3000}
+                    loop={true}
                     autoplay={{ delay: 500, disableOnInteraction: true, pauseOnMouseEnter: true }}
                     breakpoints={{
                         320: { slidesPerView: 1,
-                            grid: {
-                                rows: 2,
-                                fill: 'row',
-                            }
                          },
                         768: { slidesPerView: 2,
-                            grid: {
-                                rows: 2,
-                                fill: 'row',
-                            }
                          },   
-                        1024: { slidesPerView: 4,
-                            grid: {
-                                rows: 2,
-                                fill: 'row',
-                            }
+                        1024: { slidesPerView: 3,
                          },  
                     }}
                 >
-                {Array.from({length: 13}).map((_, index) => (
+                {Array.from({length: 5}).map((_, index) => (
                     <SwiperSlide key={index}>
                         <article className='m2section2-card'>
                             <img src={imgprueba} alt="" className='m2section2-img'/>
