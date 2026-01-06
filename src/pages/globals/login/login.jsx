@@ -1,39 +1,67 @@
 
 // react imports
-// import { useState } from 'react';
+import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 // personal imports
 import './login.css';
+import fetchBase from '@/fetch/fetch.jsx';
 
 export default function Login() {
   
   const navigate = useNavigate();
-  // const [login, setLogin] = useState(true);
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        username,
+        password
+      };
+
+      const data = await fetchBase('api/login', {
+        method: 'POST',
+        body: payload
+      });
+
+      console.log(data);
+
+      if(data.success) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        alert('Login exitoso: ' + data.user.nombre);
+        navigate('/');
+      }else {
+        alert(data.message);
+      }
+
+    };
 
   return (
       <div className="login-page">
       <div className="login-form-container">
         <p className="login-title">Bienvenido de nuevo</p>
 
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleLogin}>
           <div className="login-input-group">
             <label htmlFor="username">Nombre de Usuario</label>
-            <input type="text" name="username" id="username" placeholder="" />
+            <input type="text" name="username" id="username" placeholder="" onChange={(e) => setUsername(e.target.value)}/>
           </div>
 
           <div className="login-input-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="" />
+            <input type="password" name="password" id="password" placeholder="" onChange={(e) => setPassword(e.target.value)}/>
             <div className="login-forgot">
               <a rel="noopener noreferrer" href="#">Olvidaste tu contraseña ?</a>
             </div>
           </div>
 
-          <button className="login-sign">Iniciar Sesion</button>
+          <button className="login-sign" type="submit">Iniciar Sesion</button>
         </form>
 
-        <div className="login-social-message">
+        {/* <div className="login-social-message">
           <div className="login-line"></div>
           <p className="login-message">Inicia sesion con:</p>
           <div className="login-line"></div>
@@ -54,7 +82,7 @@ export default function Login() {
             Facebook
           </button>
 
-        </div>
+        </div> */}
 
           <p className="login-signup">
           No tienes una cuenta?

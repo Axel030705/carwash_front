@@ -175,3 +175,7 @@
 .login-signup a:hover {
   text-decoration: underline;
 }
+
+.login-error{
+  font-family: var(--montserrat);
+}

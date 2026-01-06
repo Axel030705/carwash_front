@@ -1,46 +1,87 @@
 
 // react imports
-// import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 // personal imports
 import './login.css';
+import fetchBase from '@/fetch/fetch.jsx';
 
 export default function Login() {
   
-  const navigate = useNavigate();
-  // const [login, setLogin] = useState(true);
+    const navigate = useNavigate();
+    // const [login, setLogin] = useState(true);
 
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordMatch, setPasswordMatch] = useState(true);
+
+    useEffect(() => {
+      setPasswordMatch(password === confirmPassword);
+    }, [password, confirmPassword]);
+
+    const handleRegister = async (e) => {
+      e.preventDefault();
+
+      if (!passwordMatch) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+      
+      const payload = {
+        username,
+        email,
+        password,
+      };
+
+      const data = await fetchBase('api/registrar', {
+        method: 'POST',
+        body: payload
+      });
+
+      console.log(data);
+
+      if(data.success) {
+        alert('Registro exitoso');
+        navigate('/login');
+      }else {
+        alert(data.message);
+      }
+
+    };
+  
   return (
       <div className="login-page">
       <div className="login-form-container">
         <p className="login-title">Registrate</p>
 
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleRegister}>
           <div className="login-input-group">
             <label htmlFor="username">Nombre de Usuario</label>
-            <input type="text" name="username" id="username" placeholder="" />
+            <input type="text" name="username"  placeholder="" onChange={(e) => setUsername(e.target.value)} required/>
           </div>
 
           <div className="login-input-group">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="" />
+            <input type="email" name="email"  placeholder="" onChange={(e) => setEmail(e.target.value)} required/>
           </div>
 
           <div className="login-input-group">
             <label htmlFor="password">Contrase&ntilde;a</label>
-            <input type="password" name="password" id="password" placeholder="" />
+            <input type="password" name="password"  placeholder="" onChange={(e) => setPassword(e.target.value)} required/>
           </div>
 
             <div className="login-input-group">
-            <label htmlFor="password">Confirmar contrase&ntilde;a</label>
-            <input type="password" name="password" id="password" placeholder="" />
+            <label htmlFor="password">Confirmar contrase&ntilde;a <span className="login-error">{!passwordMatch && ('Las contraseñas no coinciden')}</span></label>
+            <input type="password" name="password"  placeholder="" onChange={(e) => setConfirmPassword(e.target.value)} required/>
           </div>
 
-          <button className="login-sign">Registrarse</button>
+          <button className="login-sign" type="submit">Registrarse</button>
         </form>
 
-        <div className="login-social-message">
+        {/* <div className="login-social-message">
           <div className="login-line"></div>
           <p className="login-message">Login with social accounts</p>
           <div className="login-line"></div>
@@ -61,7 +102,7 @@ export default function Login() {
             Facebook
           </button>
 
-        </div>
+        </div> */}
 
           <p className="login-signup">
           Ya tienes una cuenta?

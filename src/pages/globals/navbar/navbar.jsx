@@ -20,7 +20,10 @@ export default function Navbar() {
                 <NavLink to="/servicios" className='navbar-link'>Servicios</NavLink>
                 <NavLink to="/faq" className='navbar-link'>FAQ</NavLink>
                 <NavLink to="/dates" className='navbar-link2'>Agendar Cita</NavLink>
-                <NavLink to="/login" className='navbar-link2'>Login</NavLink>
+                {localStorage.getItem('user') ?
+                  <NavLink to="/profile" className='navbar-link2'>Perfil</NavLink> :
+                  <NavLink to="/login" className='navbar-link2'>Login</NavLink>
+                }
             </div>
         </div>
     </nav>

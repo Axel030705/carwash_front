@@ -36,6 +36,9 @@
     width: 100%;
     height: auto;
     margin-top: 4%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
 }
 
 .m1section2-card{
