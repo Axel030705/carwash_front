@@ -1,7 +1,7 @@
 import React from 'react'
 
 // react imports
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 //  Muix imports
 import 'dayjs/locale/es';
@@ -17,12 +17,20 @@ import carwash from '@/assets/navbar/carwash.svg'
 import datearrow from '@/assets/dates/arrow-right.svg'
 import datemoney from '@/assets/dates/money.svg'
 import datetarjeta from '@/assets/dates/tarjeta.svg'
+import fetchBase from '@/fetch/fetch.jsx'
 
 export default function Dates() {
 
+    const [servicios, setServicios] = useState([]);
     const [date, setDate] = useState(null);
     const [clock, setClock] = useState(null);
     {console.log(date, clock)}
+
+    useEffect(() => {
+        fetchBase('/servicios')
+            .then(data => setServicios(data))
+            .catch(err => console.error(err));
+    }, []);
 
   return (
     <section className='dates'>
