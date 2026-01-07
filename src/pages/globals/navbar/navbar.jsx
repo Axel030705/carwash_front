@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, use, useContext} from 'react'
 
 // personal imports
 import './navbar.css'
@@ -6,8 +6,12 @@ import carwash from '@/assets/navbar/carwash.svg'
 
 // react imports
 import { NavLink } from 'react-router-dom'
+import { AuthContext } from '@/context/AuthContext';
 
 export default function Navbar() {
+
+  const {user} = useContext(AuthContext);
+
   return (
     <nav className='navbar'>
         <div className='navbar-container'>
@@ -20,8 +24,8 @@ export default function Navbar() {
                 <NavLink to="/servicios" className='navbar-link'>Servicios</NavLink>
                 <NavLink to="/faq" className='navbar-link'>FAQ</NavLink>
                 <NavLink to="/dates" className='navbar-link2'>Agendar Cita</NavLink>
-                {localStorage.getItem('user') ?
-                  <NavLink to="/profile" className='navbar-link2'>Perfil</NavLink> :
+                {user ?
+                  <NavLink to="/perfil" className='navbar-link2'>Perfil</NavLink> :
                   <NavLink to="/login" className='navbar-link2'>Login</NavLink>
                 }
             </div>
