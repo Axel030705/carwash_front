@@ -1,5 +1,5 @@
 // react imports
-import {React, useContext} from 'react'
+import {React, use, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 // personal imports
@@ -13,7 +13,6 @@ export default function perfil() {
 
     const handlelogout = async (e) => {
       e.preventDefault();
-
 
       await logout();
       navigate('/login');

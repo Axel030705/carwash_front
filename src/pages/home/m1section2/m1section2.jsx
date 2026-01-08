@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import 'swiper/css/bundle';
 
+
 export default function M1section2() {
 
     const BASE_URL = import.meta.env.VITE_API_URL;
@@ -20,9 +21,7 @@ export default function M1section2() {
 
             useEffect(() => {
                 fetchBase('api/destacados')
-                .then(data => {
-                setServicios(data);
-            })
+                .then(data => {setServicios(data)})
             .catch(err => console.error(err));
     }, []);
   return (

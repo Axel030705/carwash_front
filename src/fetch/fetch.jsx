@@ -15,10 +15,14 @@ export default async function fetchBase(endpoint, { method = 'GET', body = null,
   const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
   try {
+
     const data = await response.json();
+    
     return data;
+
   } catch {
-    // si algo falla, devolvemos un objeto con error
+
     return { success: false, message: `HTTP ${response.status}` };
+
   }
 }

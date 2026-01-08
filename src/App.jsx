@@ -12,6 +12,7 @@ import Register from '@/pages/globals/login/Register.jsx';
 import Perfil from '@/pages/globals/perfil/Perfil.jsx';
 
 import { AuthProvider } from '@/context/AuthContext';
+import ProtectedRoute from '@/redirection/ProtectedRoute';
 
 // react imports
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -30,7 +31,11 @@ function App() {
               <Route path="/dates" element={<Dates />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/perfil" element={<Perfil />} />
+              <Route path="/perfil" element={
+                <ProtectedRoute>
+                  <Perfil />
+                </ProtectedRoute>
+              } />
             </Routes>
           <Footer />
         </Router>

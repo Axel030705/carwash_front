@@ -20,11 +20,8 @@ export default function m2section2() {
     const [servicios, setServicios] = useState([]);
 
         useEffect(() => {
-        fetchBase('api/servicios')
-            .then(data => {
-                console.log(data);
-                setServicios(data);
-            })
+            fetchBase('api/servicios')
+            .then(data => {setServicios(data)})
             .catch(err => console.error(err));
     }, []);
 

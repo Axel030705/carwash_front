@@ -1,13 +1,29 @@
 // src/context/AuthContext.jsx
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import fetchBase from '@/fetch/fetch.jsx';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem('user'))
-  );
+    
+    const [user, setUser] = useState();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const data = await fetchBase('api/checkauth');
+
+            if (data.success) {
+                setUser(data.user);
+            } else {
+                setUser(null);
+            }
+
+            setLoading(false);
+        };
+
+        checkAuth();
+    }, []);
 
   const login = async ({ username, password }) => {
     const data = await fetchBase('api/login', {
@@ -32,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
