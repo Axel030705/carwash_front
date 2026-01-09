@@ -10,6 +10,7 @@ import Dates from '@/pages/dates/dates.jsx'
 import Login from '@/pages/globals/login/Login.jsx';
 import Register from '@/pages/globals/login/Register.jsx';
 import Perfil from '@/pages/globals/perfil/Perfil.jsx';
+import ScrollToTop from '@/redirection/scrolltop';
 
 import { AuthProvider } from '@/context/AuthContext';
 import { DateProvider } from '@/context/DateContext';
@@ -26,11 +27,16 @@ function App() {
         <div className='app'>
           <Router>
             <Navbar />
+            <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/servicios" element={<Services />} />
                 <Route path="/faq" element={<FAQ />} />
-                <Route path="/dates" element={<Dates />} />
+                <Route path="/dates" element={
+                  <ProtectedRoute>
+                    <Dates />
+                  </ProtectedRoute>
+                } />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/perfil" element={

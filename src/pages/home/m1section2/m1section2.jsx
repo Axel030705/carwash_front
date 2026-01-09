@@ -4,6 +4,7 @@ import './m1section2.css'
 import imgprueba from '@/assets/img/imgprueba.jpg'
 import fetchBase from '@/fetch/fetch.jsx';
 import Modal from '@/pages/globals/modal/modal.jsx';
+import { AuthContext } from '@/context/AuthContext';
 
 // react imports
 import { useState, useEffect, useContext } from 'react';
@@ -27,6 +28,7 @@ export default function M1section2() {
     const [item, setItem] = useState({});
     const [servicios, setServicios] = useState([]);
     const { dates, setDates } = useContext(DateContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         fetchBase('api/destacados')
@@ -73,9 +75,11 @@ export default function M1section2() {
                         <p className='m1section2-modal-price'>${item.precio}</p>
                     </div>
                     <p className='m1section2-modal-description'>{item.descripcion}</p>
-                    <button className='m1section2-card-button' onClick={() => {setDates({...dates, services: item}); handleNavigate()}}>Agendar cita de este servicio</button>
+                    {user ?
+                        <button className='m1section2-card-button' onClick={() => {setDates({...dates, services: item}); handleNavigate()}}>Agendar cita de este servicio</button> :
+                        <button className='m1section2-card-button' onClick={() => navigate('/login')}>Inicia sesión para agendar</button>
+                    }
                 </div>
-                {console.log(dates)}
             </div>
         </Modal>
     </section>

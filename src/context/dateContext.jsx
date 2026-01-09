@@ -21,7 +21,8 @@ export const DateContext = createContext();
 
 export const DateProvider = ({ children }) => {
     
-    localStorage.removeItem("dates");
+    // pruebas de localStorage
+    // localStorage.removeItem("dates");
 
     const [dates, setDates] = useState(() => {
         const saved = localStorage.getItem("dates");

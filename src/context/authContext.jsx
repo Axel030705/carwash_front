@@ -6,34 +6,54 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(() => {
+      const saved = localStorage.getItem('user');
+      return saved ? JSON.parse(saved) : null;
+    });
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const checkAuth = async () => {
-            const data = await fetchBase('api/checkauth');
+      const checkAuth = async () => {
+        try {
+          const data = await fetchBase('api/checkauth');
 
-            if (data.success) {
-                setUser(data.user);
-            } else {
-                setUser(null);
-            }
+          if (data.success) {
+            const userData = {
+              nombre: data.user.nombre,
+              email: data.user.email
+            };
 
-            setLoading(false);
-        };
+            setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
+          } else {
+            setUser(null);
+            localStorage.removeItem('user');
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
 
-        checkAuth();
+      checkAuth();
     }, []);
 
   const login = async ({ username, password }) => {
+
     const data = await fetchBase('api/login', {
       method: 'POST',
       body: { username, password },
     });
 
     if (data.success) {
-      setUser(data.user);
-      localStorage.setItem('user', JSON.stringify(data.user));
+
+      const userData = {
+        nombre: data.user.nombre,
+        email: data.user.email
+      }
+
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+
     }
 
     return data;
