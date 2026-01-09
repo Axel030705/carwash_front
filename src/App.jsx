@@ -12,6 +12,7 @@ import Register from '@/pages/globals/login/Register.jsx';
 import Perfil from '@/pages/globals/perfil/Perfil.jsx';
 
 import { AuthProvider } from '@/context/AuthContext';
+import { DateProvider } from '@/context/DateContext';
 import ProtectedRoute from '@/redirection/ProtectedRoute';
 
 // react imports
@@ -21,25 +22,27 @@ function App() {
   return (
     <>
     <AuthProvider>
-      <div className='app'>
-        <Router>
-          <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/servicios" element={<Services />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/dates" element={<Dates />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/perfil" element={
-                <ProtectedRoute>
-                  <Perfil />
-                </ProtectedRoute>
-              } />
-            </Routes>
-          <Footer />
-        </Router>
-      </div>
+      <DateProvider>
+        <div className='app'>
+          <Router>
+            <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/servicios" element={<Services />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/dates" element={<Dates />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/perfil" element={
+                  <ProtectedRoute>
+                    <Perfil />
+                  </ProtectedRoute>
+                } />
+              </Routes>
+            <Footer />
+          </Router>
+        </div>
+      </DateProvider>
     </AuthProvider>
     </>
   )

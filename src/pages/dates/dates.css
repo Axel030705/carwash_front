@@ -114,6 +114,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: clamp(.5em, 1vw, 1.5em);
+    justify-content: end;
     box-sizing: border-box;
     padding: 5%;
     border-width: 1px;
@@ -123,6 +124,7 @@ html {
 }
 
 .dates-services-opcion-section1{
+    margin-bottom: auto;
     width: 100%;
     height: auto;
     display: flex;
@@ -130,6 +132,7 @@ html {
     align-items: center;
     justify-content: space-between;
     gap: clamp(.5em, 1vw, 1.5em);
+    justify-self: start;
 }
 
 .dates-services-icon{
@@ -178,7 +181,7 @@ html {
     margin: 0;
     font-family: var(--montserrat);
     font-weight: 500;
-    font-size: clamp(.5rem, 1vw, 1.6rem);
+    font-size: clamp(.5rem, .8vw, 1.4rem);
     color: var(--subtitle-color);
 }
 
@@ -218,12 +221,43 @@ html {
     padding: 2%;
 }
 
+.dates-resume-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .dates-resume-title{
     margin: 0;
     font-family: var(--montserrat);
     font-weight: 800;
     font-size: clamp(1rem, 1.35vw, 2.2rem);
     color: black;
+}
+
+.dates-resume-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 50px;
+    box-sizing: border-box;
+    padding: 1%;
+    transition: all 0.2s;
+}
+
+.dates-resume-delete:hover{
+    background-color: var(--back-blue);
+}
+
+.dates-resume-icon{
+    width: 100%;
+    height: auto;
 }
 
 .dates-resume-line{

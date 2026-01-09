@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { use } from 'react'
 
 // react imports
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 //  Muix imports
 import 'dayjs/locale/es';
@@ -17,20 +17,30 @@ import carwash from '@/assets/navbar/carwash.svg'
 import datearrow from '@/assets/dates/arrow-right.svg'
 import datemoney from '@/assets/dates/money.svg'
 import datetarjeta from '@/assets/dates/tarjeta.svg'
+import deleteicon from '@/assets/dates/delete.svg'
+
 import fetchBase from '@/fetch/fetch.jsx'
 
-export default function Dates() {
+import { DateContext } from '@/context/DateContext'
 
+export default function Dates() {
+    
     const [servicios, setServicios] = useState([]);
-    const [date, setDate] = useState(null);
-    const [clock, setClock] = useState(null);
-    {console.log(date, clock)}
+    const { dates, setDates } = useContext(DateContext);
+    const {initialState} = useContext(DateContext);
+    console.log(dates)
 
     useEffect(() => {
-        fetchBase('/servicios')
+        fetchBase('api/servicios')
             .then(data => setServicios(data))
             .catch(err => console.error(err));
     }, []);
+
+    const handleDelete = () => {
+        setDates(initialState);
+    };
+
+
 
   return (
     <section className='dates'>
@@ -45,24 +55,25 @@ export default function Dates() {
                         <h3 className='dates-global-title'>Elige tu Servicios</h3>
                     </div>
                     <div className='dates-services-content'>
-                        {Array.from({ length: 5 }).map((_, index) => (
-                            <label key={index} className="dates-services-option">
+                        {servicios.map((servicio, index) => (
+                            <label key={index} className="dates-services-option" onClick={() => setDates(prev => ({...prev, services: servicio}))}>
                             <div className="dates-services-opcion-section1">
                                 <img src={carwash} alt="" loading="lazy" className="dates-services-icon" />
                                 <input
                                 type="radio"
                                 name="service"
                                 className="dates-services-input"
+                                checked={dates.services?.nombre === servicio.nombre}
                                 />
                                 <span className="dates-services-checkmark"></span>
                             </div>
 
-                            <strong className="dates-services-option-title">Título de la opción</strong>
+                            <strong className="dates-services-option-title">{servicio.nombre}</strong>
                             <p className="dates-services-option-text">
-                                Descripción o detalles adicionales. cosas extras y así Lorem ipsum dolor sit
+                                {servicio.descripcion_corta}
                             </p>
                             <div className="dates-services-option-line"></div>
-                            <span className="dates-services-option-price">$25</span>
+                            <span className="dates-services-option-price">${servicio.precio}</span>
                             </label>
                         ))}
                     </div>
@@ -76,8 +87,13 @@ export default function Dates() {
                         <div className='dates-calendar-content'>
                             <div className="dates-calendar-col1">
                                 <StaticDatePicker 
-                                value={date}
-                                onChange={setDate}
+                                value={dates.date}
+                                onChange={(newDate) =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        date: newDate
+                                    }))
+                                }
                                 defaultValue={dayjs()}
                                 orientation='portrait'
                                 slotProps={{
@@ -92,8 +108,13 @@ export default function Dates() {
                             </div>
                             <div className="dates-calendar-col2">
                                 <DigitalClock 
-                                value={clock}
-                                onChange={setClock}
+                                value={dates.time}
+                                onChange={(newTime) =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        time: newTime
+                                    }))
+                                }
                                 timeStep={60}   
                                 ampm 
                                 minTime={dayjs().hour(8).minute(0)}
@@ -125,6 +146,16 @@ export default function Dates() {
                                 id="nombre"
                                 className="dates-input"
                                 placeholder="Juan Pérez"
+                                value={dates.data.name}
+                                onChange={e =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        data:{
+                                            ...prev.data,
+                                            name: e.target.value
+                                        }
+                                    }))
+                                }
                                 />
                             </div>
                         </div>
@@ -133,10 +164,20 @@ export default function Dates() {
                             <div className="dates-input-wrapper">
                                 <span className="dates-input-icon">📞</span>
                                 <input
+                                value={dates.data.phone}
                                 type="text"
                                 id="telefono"
                                 className="dates-input"
-                                placeholder=" 696 116 2732"
+                                placeholder=" 669 110 2839"
+                                onChange={e =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        data:{
+                                            ...prev.data,
+                                            phone: e.target.value
+                                        }
+                                    }))
+                                }
                                 />
                             </div>
                         </div>
@@ -149,6 +190,16 @@ export default function Dates() {
                                 id="auto"
                                 className="dates-input"
                                 placeholder="Ej: Honda Civic 2022"
+                                value={dates.data.car}
+                                onChange={e =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        data:{
+                                            ...prev.data,
+                                            car: e.target.value
+                                        }
+                                    }))
+                                }
                                 />
                             </div>
                         </div>
@@ -161,6 +212,16 @@ export default function Dates() {
                                 id="placa"
                                 className="dates-input"
                                 placeholder="GTA-619-11"
+                                value={dates.data.plate}
+                                onChange={e =>
+                                    setDates(prev => ({
+                                        ...prev,
+                                        data:{
+                                            ...prev.data,
+                                            plate: e.target.value
+                                        }
+                                    }))
+                                }
                                 />
                             </div>
                         </div>
@@ -198,19 +259,25 @@ export default function Dates() {
                 </div>
             </div>
             <div className='dates-resume-container'>
-                <h3 className='dates-resume-title'>Resumen de Reserva</h3>
+                <div className='dates-resume-header'>
+                    <h3 className='dates-resume-title'>Resumen de Reserva</h3>
+                    <a href="#" className='dates-resume-delete' onClick={handleDelete}>
+                        <img src={deleteicon} alt="" loading="lazy" className='dates-resume-icon'/>
+                    </a>
+                </div>
                 <div className='dates-resume-line'></div>
                 <div className='dates-resume-section1'>
                     <div className='dates-resume-service-container'>
-                        <p className='dates-resume-service-title'>Lavado completo</p>
-                        <p className='dates-resume-service-tag'>Destacado</p>
+                        <p className='dates-resume-date-title'>Servicio</p>
+                        <p className='dates-resume-service-title'>{dates.services?.nombre ?? '-'}</p>
+                        <p className='dates-resume-service-tag'>{dates.services?.destacado === 1 && 'Destacado'}</p>
                     </div>
-                    <p className='dates-resume-price'>$25.00</p>
+                    <p className='dates-resume-price'>${dates.services?.precio}</p>
                 </div>
                 <div className='dates-resume-section2'>
                     <div className='dates-resume-date-container'>
                         <p className='dates-resume-date-title'>Cita</p>
-                        <p className='dates-resume-date'>{date?.format('DD/MM/YYYY')} - {clock?.format('hh:mm A')}</p>
+                        <p className='dates-resume-date'>{dates.date?.format('DD/MM/YYYY')} - {dates.time?.format('hh:mm A')}</p>
                     </div>
                     <a href="#dates-calendar-container" className='dates-resume-edit'>Editar</a>
                 </div>
