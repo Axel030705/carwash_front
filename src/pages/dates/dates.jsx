@@ -28,7 +28,8 @@ export default function Dates() {
     const [servicios, setServicios] = useState([]);
     const { dates, setDates } = useContext(DateContext);
     const {initialState} = useContext(DateContext);
-    console.log(dates)
+    const { savedates } = useContext(DateContext);
+    const [activeStep, setActiveStep] = useState('');
 
     useEffect(() => {
         fetchBase('api/servicios')
@@ -38,9 +39,54 @@ export default function Dates() {
 
     const handleDelete = () => {
         setDates(initialState);
+        setActiveStep('');
     };
 
+    const scrollToSection = (id) => {
+        const el = document.getElementById(id);
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 300;
 
+        window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+        });
+    };
+
+    const handleDate = (e) => {
+        e.preventDefault();
+
+        const required = {
+            services: dates.services,
+            date: dates.date,
+            time: dates.time,
+            name: dates.data?.name,
+            phone: dates.data?.phone,
+            car: dates.data?.car,
+            pay_method: dates.pay_method
+        };
+
+        const requiredFields = [
+            { value: dates.services, step: 'services' },
+            { value: dates.date, step: 'calendar' },
+            { value: dates.time, step: 'calendar' },
+            { value: dates.data?.name, step: 'data' },
+            { value: dates.data?.phone, step: 'data' },
+            { value: dates.data?.car, step: 'data' },
+            { value: dates.pay_method, step: 'payment' }
+        ];
+
+        const firstInvalid = requiredFields.find(f => !f.value);
+
+        if (!firstInvalid) {
+            // savedates(required);
+            console.log(dates);
+        }else {
+            // alert('Completa los campos obligatorios');
+            setActiveStep(firstInvalid.step);
+            scrollToSection(firstInvalid.step);
+        }
+        
+    }
 
   return (
     <section className='dates'>
@@ -49,10 +95,11 @@ export default function Dates() {
                 <h2 className='dates-selection-title'>Reserva tu lavado</h2>
                 <p className='dates-selection-text'>Completa el formulario en 4 simples pasos</p>
 
-                <div className='dates-globals-container'>
+                <div className='dates-globals-container' id='services'>
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>1</p>
                         <h3 className='dates-global-title'>Elige tu Servicios</h3>
+                        {activeStep === 'services' && <p className='dates-global-subtitle'>Selecciona un servicio</p>}
                     </div>
                     <div className='dates-services-content'>
                         {servicios.map((servicio, index) => (
@@ -64,6 +111,7 @@ export default function Dates() {
                                 name="service"
                                 className="dates-services-input"
                                 checked={dates.services?.nombre === servicio.nombre}
+                                onChange={() => setDates(prev => ({...prev, services: servicio}))}
                                 />
                                 <span className="dates-services-checkmark"></span>
                             </div>
@@ -82,9 +130,10 @@ export default function Dates() {
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>2</p>
                         <h3 className='dates-global-title'>Fecha y Hora</h3>
+                        {activeStep === 'calendar' && <p className='dates-global-subtitle'>Selecciona la fecha y la hora</p>}
                     </div>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
-                        <div className='dates-calendar-content'>
+                        <div className='dates-calendar-content'  id='calendar'>
                             <div className="dates-calendar-col1">
                                 <StaticDatePicker 
                                 value={dates.date}
@@ -131,10 +180,11 @@ export default function Dates() {
                         </div>
                     </LocalizationProvider>
                 </div>
-                <div className='dates-globals-container' id='dates-calendar-container'>
+                <div className='dates-globals-container' id='data'>
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>3</p>
                         <h3 className='dates-global-title'>Ingresa tus Datos</h3>
+                        {activeStep === 'data' && <p className='dates-global-subtitle'>Completa los datos obligatorios</p>}
                     </div>
                     <div className='dates-input-grid'>
                         <div className="dates-input-group">
@@ -227,13 +277,14 @@ export default function Dates() {
                         </div>
                     </div>
                 </div>
-                <div className='dates-globals-container'>
+                <div className='dates-globals-container' id='payment'>
                     <div className='dates-global-header'>
                         <p className='dates-global-number'>4</p>
                         <h3 className='dates-global-title'>Metodo de Pago</h3>
+                        {/* {activeStep === 'payment' && <p className='dates-global-subtitle'>Selecciona un metodo de pago</p>} */}
                     </div>
                     <div className='dates-payment-container'>
-                        <label className="dates-payment-option">
+                        {/* <label className="dates-payment-option">
                             <div className="dates-payment-opcion-section1">
                                 <input type="radio" id="tarjeta" name="tarjeta" className="dates-payment-input" />
                                 <span className="dates-payment-checkmark"></span>
@@ -243,10 +294,15 @@ export default function Dates() {
                                     <p className="dates-payment-option-text">Tarjeta de Credito/Debito</p>
                                 </div>
                             </div>
-                        </label>
-                        <label className="dates-payment-option">
+                        </label> */}
+                        <label className="dates-payment-option" htmlFor="efectivo">
                             <div className="dates-payment-opcion-section1">
-                                <input type="radio" id="efectivo" name="efectivo" className="dates-payment-input" />
+                                <input type="radio" id="efectivo" name="pago" 
+                                    className="dates-payment-input" 
+                                    value="efectivo"
+                                    checked={dates.pay_method === "efectivo"}
+                                    onChange={() => setDates(prev => ({...prev, pay_method: "efectivo"}))}
+                                />
                                 <span className="dates-payment-checkmark"></span>
                                 <img src={datetarjeta} alt="" loading="lazy" className="dates-payment-icon" />
                                 <div className='dates-payment-content'>
@@ -286,7 +342,7 @@ export default function Dates() {
                     <p className='dates-resume-total-title'>Total a pagar</p>
                     <p className='dates-resume-total-price'>$25</p>
                 </div>
-                <button className='dates-resume-button'>
+                <button className='dates-resume-button' onClick={handleDate}>
                     Confirmar Reserva 
                     <img src={datearrow} alt="" loading='lazy' className='dates-resume-button-icon'/>
                 </button>

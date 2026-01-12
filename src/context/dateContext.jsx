@@ -16,7 +16,7 @@ export const DateContext = createContext();
         car: "",
         plate: ""
     },
-    card: null
+    pay_method: 'efectivo'
  }
 
 export const DateProvider = ({ children }) => {
@@ -41,6 +41,28 @@ export const DateProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("dates", JSON.stringify(dates));
     }, [dates]);
+
+    const savedates = async (dates) => {
+
+        const payload = {
+            services: dates.services,
+            date: dates.date,
+            time: dates.time,
+            data: dates.data,
+            pay_method: dates.data.pay_method
+        };
+        
+        const data = await fetchBase('api/savedate', {
+            method: 'POST',
+            body: { payload }
+        });
+
+        if (data.success) {
+            setDates(initialState);
+        }
+
+
+    }
 
     return (
         <DateContext.Provider value={{ dates, setDates, initialState }} >
