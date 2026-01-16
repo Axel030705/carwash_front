@@ -1,0 +1,246 @@
+:root {
+  --perfil-primario: #1877f2;
+  --perfil-fondo: #ffffff;
+  --perfil-blanco: #ffffff;
+  --perfil-borde: #dadde1;
+  --perfil-texto: #050505;
+  --perfil-muted: #65676b;
+  --perfil-ok: #22c55e;
+  --perfil-pendiente: #f59e0b;
+}
+
+/* Wrapper */
+
+.perfil {
+  width: 100%;
+  margin: 0 auto; 
+  padding: 1% 2%;
+  background: var(--perfil-fondo);
+}
+
+/* Layout */
+
+.perfil-layout {
+  max-width: 2560px;
+    width: 80%;
+    margin: 2% auto 3% auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1%;
+    align-items: flex-start;
+}
+
+/* Columnas */
+.perfil-col-izquierda {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-col-derecha {
+  margin-bottom: 5%;
+}
+
+/* Header */
+
+.perfil-header {
+    width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 4px 28px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--perfil-borde);
+}
+
+.perfil-header-info{
+    width: 100%;
+    height: auto;
+}
+
+.perfil-avatar {
+    border-radius: 50%;
+    background: linear-gradient(135deg, #42a5f5, var(--perfil-primario));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: white;
+    padding: 5%;
+}
+
+.perfil-nombre {
+    margin: 0;
+    font-size: clamp(1rem, 1.6vw, 2.5rem);
+    font-family: var(--montserrat);
+    font-weight: 600;
+    color: var(--perfil-texto);
+}
+
+.perfil-subtitulo {
+    margin: 1% 0 3% 0;
+    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+    font-family: var(--montserrat);
+    color: var(--perfil-muted);
+}
+
+.perfil-header-actions {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.perfil-logout{
+    width: fit-content;
+}
+
+.perfil-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: clamp(0.8rem, 1.2vw, 1.3rem);
+    font-family: var(--montserrat);
+    border: none;
+    cursor: pointer;
+    padding: 1% 3%;
+}
+
+.perfil-btn-primario {
+  background: var(--perfil-primario);
+  color: white;
+}
+
+.perfil-btn-secundario {
+  background: #e4e6eb;
+  color: var(--perfil-texto);
+}
+
+/* Secciones izquierda */
+
+.perfil-seccion {
+  padding: 24px 4px;
+}
+
+.perfil-card-title {
+  font-size: clamp(0.8rem, 1.4vw, 2rem);
+  font-family: var(--montserrat);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Info */
+
+.perfil-info-list {
+  display: grid;
+  gap: 18px;
+}
+
+.perfil-info-item span {
+  font-size: clamp(0.8rem, .9vw, 1.5rem);
+  font-family: var(--montserrat);
+  color: var(--perfil-muted);
+  text-transform: uppercase;
+}
+
+.perfil-info-item p {
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+  font-family: var(--montserrat);
+  margin: .5% 0 2% 0;
+  color: var(--perfil-primario);
+}
+
+/* Historial (cuadro derecho) */
+
+.perfil-historial {
+  background: var(--perfil-blanco);
+  border: 1px solid var(--perfil-borde);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+/* Actividad */
+
+.perfil-actividad {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 50dvh;
+    overflow-y: auto;
+}
+
+.perfil-actividad-item {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--perfil-borde);
+  cursor: pointer;
+}
+
+.perfil-actividad-info{
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+.perfil-actividad-oculto{
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+    padding: 1% 0 0 5%;
+    box-sizing: border-box;
+}
+
+.perfil-actividad-item:focus .perfil-actividad-oculto{
+    max-height: 200px;
+    opacity: 1;
+}
+
+.perfil-actividad-item:last-child {
+  border-bottom: none;
+}
+
+.perfil-actividad-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.perfil-actividad-item strong {
+  display: block;
+  font-size: clamp(0.8rem, .9vw, 1.5rem);
+  font-family: var(--montserrat);
+  font-weight: 600;
+  color: var(--perfil-texto);
+}
+
+.perfil-actividad-item span {
+  font-size: clamp(0.8rem, .9vw, 1.3rem);
+  font-family: var(--montserrat);
+  color: var(--perfil-muted);
+}
+
+.perfil-ok {
+  background: var(--perfil-ok);
+}
+
+.perfil-pendiente {
+  background: var(--perfil-pendiente);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .perfil-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-col-derecha {
+    position: static;
+  }
+}

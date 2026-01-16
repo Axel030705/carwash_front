@@ -63,12 +63,18 @@
     font-weight: 600;
     font-size: clamp(0.8rem, 1vw, 1.5rem);
     text-decoration: none;
+    color: var(--back-blue-dark);
+}
+
+.navbar-link:hover {
+    color: var(--back-blue-darker);
+    cursor: pointer;
 }
 
 .navbar-link2 {
     margin: 0;
     width: fit-content;
-    background-color: blue;
+    background-color: var(--back-blue-dark);
     color: white;
     padding: 1% 2%;
     border-radius: 10px;
@@ -77,6 +83,10 @@
     font-size: clamp(0.8rem, 1vw, 1.7rem);
     text-decoration: none;
     box-sizing: border-box;
+}
+
+.navbar-link2:hover {
+    background-color: var(--back-blue-darker);
 }
 
 .navbar-logo {

@@ -21,7 +21,7 @@ export default function Login() {
 
     if (data.success) {
       alert('Login exitoso: ' + data.user.nombre);
-      localStorage.setItem('user', JSON.stringify(data.user.nombre));
+      localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/');
     } else {
       alert(data.message);

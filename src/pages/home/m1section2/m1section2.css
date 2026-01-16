@@ -57,6 +57,7 @@
     position: absolute;
     background-color: var(--back-blue-dark);
     color: white;
+    font-size: clamp(0.5rem, 1vw, 1.5rem);
     font-family: var(--montserrat);
     font-weight: 500;
     padding: 2% 3%;
@@ -102,7 +103,7 @@
     font-family: var(--montserrat);
     font-weight: 600;
     font-size: clamp(0.8rem, 1vw, 1.5rem);
-    color: rgb(59, 59, 255);
+    color: var(--back-blue-dark);
     background-color: rgba(141, 105, 215, 0.168);
     box-sizing: border-box;
     padding: 1% 2%;
@@ -192,7 +193,7 @@
     font-family: var(--montserrat);
     font-weight: 600;
     font-size: clamp(0.8rem, 1vw, 1.5rem);
-    color: rgb(59, 59, 255);
+    color: var(--back-blue-dark);
     background-color: rgba(141, 105, 215, 0.168);
     box-sizing: border-box;
     padding: 1% 2%;

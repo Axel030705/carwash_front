@@ -10,6 +10,8 @@ import { DigitalClock } from '@mui/x-date-pickers/DigitalClock';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
 
 // personal imports
 import './dates.css'
@@ -28,8 +30,9 @@ export default function Dates() {
     const [servicios, setServicios] = useState([]);
     const { dates, setDates } = useContext(DateContext);
     const {initialState} = useContext(DateContext);
-    const { savedates } = useContext(DateContext);
+    const { savedates, dateConfirm, setDateConfirm } = useContext(DateContext);
     const [activeStep, setActiveStep] = useState('');
+    const [ocupadas , setOcupadas] = useState([]);
 
     useEffect(() => {
         fetchBase('api/servicios')
@@ -41,6 +44,8 @@ export default function Dates() {
         setDates(initialState);
         setActiveStep('');
     };
+
+
 
     const scrollToSection = (id) => {
         const el = document.getElementById(id);
@@ -56,9 +61,9 @@ export default function Dates() {
         e.preventDefault();
 
         const required = {
-            services: dates.services,
-            date: dates.date,
-            time: dates.time,
+            services: dates.services.id_servicio,
+            date: dates.date ? dates.date.format('YYYY-MM-DD') : null,
+            time: dates.time ? dates.time.format('HH:mm') : null,
             name: dates.data?.name,
             phone: dates.data?.phone,
             car: dates.data?.car,
@@ -78,8 +83,9 @@ export default function Dates() {
         const firstInvalid = requiredFields.find(f => !f.value);
 
         if (!firstInvalid) {
-            // savedates(required);
-            console.log(dates);
+
+            savedates(required);
+            // console.log(dates);
         }else {
             // alert('Completa los campos obligatorios');
             setActiveStep(firstInvalid.step);
@@ -87,6 +93,39 @@ export default function Dates() {
         }
         
     }
+
+    const handleDateChange = (newDate) => {
+        if (!newDate) return;
+
+        const normalizedDate = dayjs(newDate).startOf('day');
+
+        setDates(prev => ({
+            ...prev,
+            date: normalizedDate,
+            time: null // MUY IMPORTANTE: resetear hora
+        }));
+
+        const day = normalizedDate.format('YYYY-MM-DD');
+
+        console.log('DATE ENVIADA:', day);
+        fetchBase(`api/hours?date=${day}`)
+            .then(res => {
+                console.log('RESPUESTA BACKEND:', res);
+            if (res.success && Array.isArray(res.data)) {
+                const horasOcupadas = [...new Set(
+                res.data.map(h => Number(h.hora_ocupada))
+                )];
+                setOcupadas(horasOcupadas);
+            } else {
+                setOcupadas([]);
+            }
+            })
+            .catch(() => setOcupadas([]));
+        // {console.log('console de dates', day, ocupadas)}
+
+    };
+
+    const horasDisponibles = Array.from({ length: 15 }, (_, i) => i + 8); // 8–22
 
   return (
     <section className='dates'>
@@ -137,14 +176,10 @@ export default function Dates() {
                             <div className="dates-calendar-col1">
                                 <StaticDatePicker 
                                 value={dates.date}
-                                onChange={(newDate) =>
-                                    setDates(prev => ({
-                                        ...prev,
-                                        date: newDate
-                                    }))
-                                }
+                                onChange={handleDateChange}
                                 defaultValue={dayjs()}
                                 orientation='portrait'
+                                minDate={dayjs()}
                                 slotProps={{
                                     actionBar: {
                                         actions: [null],
@@ -156,25 +191,30 @@ export default function Dates() {
                                 />
                             </div>
                             <div className="dates-calendar-col2">
-                                <DigitalClock 
-                                value={dates.time}
-                                onChange={(newTime) =>
-                                    setDates(prev => ({
+                                <select
+                                    className="dates-hours-select"
+                                    value={dates.time ? dates.time.hour() : ''}
+                                    onChange={(e) =>
+                                        setDates(prev => ({
                                         ...prev,
-                                        time: newTime
-                                    }))
-                                }
-                                timeStep={60}   
-                                ampm 
-                                minTime={dayjs().hour(8).minute(0)}
-                                maxTime={dayjs().hour(22).minute(0)}
-                                skipDisabled
-                                sx={{
-                                    flex: 1,
-                                    minHeight: 0,
-                                    overflowY: 'auto',
-                                }}
-                                />
+                                        time: dayjs().hour(Number(e.target.value)).minute(0)
+                                        }))
+                                    }
+                                    >
+                                    <option value="" disabled>
+                                        Selecciona una hora
+                                    </option>
+
+                                    {horasDisponibles.map(hour => (
+                                        <option
+                                        key={hour}
+                                        value={hour}
+                                        disabled={ocupadas.includes(hour)}
+                                        >
+                                        {dayjs().hour(hour).format('hh:00 A')}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
                         </div>

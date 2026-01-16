@@ -85,7 +85,7 @@
   font-size: clamp(0.5rem, .8vw, 1.25rem);
   font-weight: 600;
   color: #ffffff;
-  background-color: #a78bfa;
+  background-color: var(--back-blue-dark);
   border: none;
   border-radius: 0.45rem;
   cursor: pointer;

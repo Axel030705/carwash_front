@@ -7,6 +7,7 @@ import Home from '@/pages/home/Home.jsx'
 import Services from '@/pages/sevices/Services.jsx'
 import FAQ from '@/pages/faq/faq.jsx'
 import Dates from '@/pages/dates/dates.jsx'
+import ConfirmDate from '@/pages/dates/confirmdate/confirmdate.jsx'
 import Login from '@/pages/globals/login/Login.jsx';
 import Register from '@/pages/globals/login/Register.jsx';
 import Perfil from '@/pages/globals/perfil/Perfil.jsx';
@@ -22,10 +23,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <>
-    <AuthProvider>
-      <DateProvider>
-        <div className='app'>
-          <Router>
+    <Router>
+      <AuthProvider>
+        <DateProvider>
+          <div className='app'>
             <Navbar />
             <ScrollToTop />
               <Routes>
@@ -44,12 +45,17 @@ function App() {
                     <Perfil />
                   </ProtectedRoute>
                 } />
+                <Route path="/confirmdate" element={
+                  <ProtectedRoute>
+                    <ConfirmDate />
+                  </ProtectedRoute>
+                } />
               </Routes>
             <Footer />
-          </Router>
-        </div>
-      </DateProvider>
-    </AuthProvider>
+          </div>
+        </DateProvider>
+      </AuthProvider>
+    </Router>
     </>
   )
 }

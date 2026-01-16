@@ -2,6 +2,9 @@
 import { createContext, useEffect, useState } from 'react';
 import fetchBase from '@/fetch/fetch.jsx';
 
+// dayjs imports
+import dayjs from 'dayjs';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -17,15 +20,7 @@ export const AuthProvider = ({ children }) => {
         try {
           const data = await fetchBase('api/checkauth');
 
-          if (data.success) {
-            const userData = {
-              nombre: data.user.nombre,
-              email: data.user.email
-            };
-
-            setUser(userData);
-            localStorage.setItem('user', JSON.stringify(userData));
-          } else {
+          if (!data.success) {
             setUser(null);
             localStorage.removeItem('user');
           }
@@ -47,8 +42,11 @@ export const AuthProvider = ({ children }) => {
     if (data.success) {
 
       const userData = {
+        id: data.user.id,
         nombre: data.user.nombre,
-        email: data.user.email
+        email: data.user.email,
+        telefono: data.user.telefono,
+        fecha_perfil: dayjs(data.user.fecha_perfil).format('YYYY-MM-DD')
       }
 
       setUser(userData);
