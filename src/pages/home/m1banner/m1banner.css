@@ -91,4 +91,61 @@
 }
 
 
+@media (max-width: 1366px) {
+  .m1banner-container {
+    height: 75dvh;
+    border-radius: 40px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .m1banner-container {
+    height: 70dvh;
+    border-radius: 32px;
+  }
+
+  .m1banner-buttons-container {
+    gap: 1.5rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .m1banner {
+    margin-top: 4%;
+  }
+
+  .m1banner-container {
+    height: 60dvh;
+    border-radius: 18px;
+  }
+
+  .m1banner-title {
+    font-size: 2rem;
+  }
+
+  .m1banner-text {
+    font-size: 1rem;
+  }
+}
+
+
+
+@media (max-width: 360px) {
+  .m1banner-container {
+    height: 55dvh;
+  }
+
+  .m1banner-title {
+    font-size: 1.7rem;
+  }
+
+  .m1banner-text {
+    font-size: 0.95rem;
+  }
+}
+
+
+
 
