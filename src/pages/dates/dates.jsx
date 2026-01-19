@@ -10,8 +10,7 @@ import { DigitalClock } from '@mui/x-date-pickers/DigitalClock';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
+import { useMediaQuery } from '@mui/material';
 
 // personal imports
 import './dates.css'
@@ -33,6 +32,8 @@ export default function Dates() {
     const { savedates, dateConfirm, setDateConfirm } = useContext(DateContext);
     const [activeStep, setActiveStep] = useState('');
     const [ocupadas , setOcupadas] = useState([]);
+    const isMobile = useMediaQuery('(max-width:768px)');
+
 
     useEffect(() => {
         fetchBase('api/servicios')
@@ -178,7 +179,7 @@ export default function Dates() {
                                 value={dates.date}
                                 onChange={handleDateChange}
                                 defaultValue={dayjs()}
-                                orientation='portrait'
+                                orientation="portrait"
                                 minDate={dayjs()}
                                 slotProps={{
                                     actionBar: {

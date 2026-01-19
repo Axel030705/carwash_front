@@ -712,3 +712,109 @@ html, body {
         transform: scale(1.7); 
     }
 }
+
+
+@media (max-width: 1366px) {
+
+  .dates-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .dates-selection-container,
+  .dates-resume-container {
+    width: 100%;
+  }
+
+  .dates-resume-container {
+    position: relative;
+    top: unset;
+    order: 2;
+  }
+
+  /* Services → 2 columnas balanceadas */
+  .dates-services-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Inputs */
+  .dates-input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Payments */
+  .dates-payment-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Calendario */
+  .dates-calendar-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .dates-calendar-col1,
+  .dates-calendar-col2 {
+    width: 100%;
+  }
+
+  .dates-hours-select {
+    margin-left: 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .dates-container {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .dates-globals-container,
+  .dates-calendar-container,
+  .dates-resume-container {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  /* Services → 1 columna */
+  .dates-services-content {
+    grid-template-columns: 1fr;
+  }
+
+  .dates-services-option {
+    padding: 1rem;
+  }
+
+  /* Títulos */
+  .dates-selection-title {
+    font-size: 1.5rem;
+  }
+
+  .dates-selection-text {
+    font-size: 0.95rem;
+  }
+
+  /* Resume */
+  .dates-resume-button {
+    width: 100%;
+    padding: 2%;
+    font-size: .8rem;
+    box-sizing: border-box;
+  }
+
+  .dates-resume-button-icon {
+    width: 22px;
+  }
+
+  /* Inputs */
+  .dates-input {
+    padding: 0.85rem 0 0.85rem 3rem;
+  }
+
+  .dates-input-icon {
+    left: 10px;
+  }
+}
