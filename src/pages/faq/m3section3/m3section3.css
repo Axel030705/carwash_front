@@ -194,3 +194,84 @@ align-items: center;
   background-color: #8b5cf6;
   transform: translateY(-1px);
 }
+
+@media (max-width: 1366px) {
+    .m3section3-container {
+        width: 90%;
+    }
+
+    .m3section3-content {
+        gap: 8px;
+        padding: 2.5% 4%;
+    }
+
+    .m3section3-button {
+        font-size: clamp(0.5rem, 1vw, 1.6rem);
+        padding: 2.5% 4%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .m3section3-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 3% 3%;
+    }
+
+    .m3section3-button {
+        width: 70%;
+    }
+
+    .m3section3-button-icon {
+        width: clamp(1.2rem, 2.5vw, 2.5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .m3section3-container {
+        width: 95%;
+    }
+
+    .m3section3-title {
+        font-size: clamp(1rem, 4vw, 2.2rem);
+    }
+
+    .m3section3-text {
+        font-size: clamp(0.7rem, 2vw, 1.5rem);
+    }
+
+    .m3section3-button {
+        width: 80%;
+        font-size: clamp(0.6rem, 2vw, 1.2rem);
+        padding: 2% 3%;
+    }
+}
+
+@media (max-width: 480px) {
+    .m3section3-content {
+        padding: 3% 2%;
+        gap: 1rem;
+    }
+
+    .m3section3-title {
+        font-size: clamp(0.9rem, 5vw, 1.8rem);
+    }
+
+    .m3section3-text {
+      margin: 0 auto;
+      width: 70%;
+        font-size: clamp(0.6rem, 3vw, 1.2rem);
+    }
+
+    .m3section3-button {
+        width: 90%;
+        font-size: clamp(0.5rem, 3vw, 1rem);
+    }
+
+    .m3section3-button-icon {
+        width: 20px;
+    }
+
+}

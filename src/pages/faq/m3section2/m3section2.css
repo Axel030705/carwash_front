@@ -104,5 +104,77 @@
 }
 
 
+@media (max-width: 1366px) {
+
+    .m3section2-container {
+        width: 90%;
+    }
+
+    .m3section2-question-icon {
+        width: 3%;
+        padding: 0.6%;
+    }
+
+    .m3section2-question-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .m3section2-container {
+        width: 95%;
+    }
+
+    .m3section2-title {
+        text-align: center;
+    }
+
+    .m3section2-text {
+        text-align: center;
+    }
+
+    .m3section2-question-content {
+        padding: 1.25rem;
+        border-width: 2px;
+    }
+
+    .m3section2-title-container {
+        gap: 0.75rem;
+    }
+
+    .m3section2-question-icon {
+        width: 28px;
+        padding: 6px;
+    }
+
+    .m3section2-question-title {
+        font-size: 1rem;
+    }
+
+    .m3section2-question-text {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .m3section2-question-content {
+        padding: 1rem;
+    }
+
+    .m3section2-question-icon {
+        width: 24px;
+        padding: 5px;
+    }
+
+    .m3section2-question-title {
+        font-size: 0.95rem;
+    }
+
+    .m3section2-question-text {
+        font-size: 0.9rem;
+    }
+}
 
 

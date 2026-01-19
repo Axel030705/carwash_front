@@ -63,3 +63,65 @@
     text-align: center;
     border-radius: 15px;
 }
+
+@media (max-width: 1024px) {
+    .m3banner-container {
+        height: 60dvh;
+    }
+
+    .m3banner-form-input {
+        width: 90%;
+        padding: 3% 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .m3banner-container {
+        height: 70dvh;
+    }
+
+    .m3banner-content {
+        width: 90%;
+        gap: 1rem;
+    }
+
+    .m3banner-content-title {
+        font-size: 2.2rem;
+    }
+
+    .m3banner-content-text {
+        font-size: 1.1rem;
+    }
+
+    .m3banner-form-input {
+        width: 100%;
+        padding: 4% 0;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .m3banner-container {
+        height: 30dvh;
+    }
+
+    .m3banner-content {
+        width: 92%;
+        text-align: center;
+    }
+
+    .m3banner-content-title {
+        font-size: 1.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .m3banner-content-text {
+        font-size: 1rem;
+    }
+
+}

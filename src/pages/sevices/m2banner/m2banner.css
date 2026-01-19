@@ -56,3 +56,22 @@
     text-align: center;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 768px) {
+
+  .m2banner-container {
+    height: 30dvh;
+  }
+
+  .m2banner-content {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 8%;
+    box-sizing: border-box;
+  }
+
+  .m2banner-text {
+    width: 100%;
+  }
+
+}
