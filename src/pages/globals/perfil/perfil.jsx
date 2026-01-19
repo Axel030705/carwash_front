@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 // dayjs imports
 import dayjs from 'dayjs';
 
+// sweetalert imports
+import Swal from 'sweetalert2';
+
 // personal imports
 import './perfil.css'
 
@@ -14,8 +17,14 @@ import fetchBase from '@/fetch/fetch.jsx'
 
 export default function perfil() {
 
-    const { logout, user } = useContext(AuthContext);
+    const { logout, user, updateUser } = useContext(AuthContext);
     const [history, setHistory] = useState([]);
+    const [form, setForm] = useState(false);
+    const [nombre, setNombre] = useState(user.nombre);
+    const [telefono, setTelefono] = useState(user.telefono);
+    const [email, setEmail] = useState(user.email);
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const navigate = useNavigate();
 
@@ -48,6 +57,49 @@ export default function perfil() {
         .catch(() => setHistory([]));
     }, []);
 
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+
+      if (!emailRegex.test(email)) {
+        Swal.fire('Error', 'Ingresa un correo válido', 'error');
+        return;
+      }
+
+      const payload = {
+        nombre,
+        telefono,
+        email,
+      };
+
+          Swal.fire({
+          title: 'Guardar cambios',
+          text: '¿Deseas continuar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Guardar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetchBase('api/updateuser', {
+                method: 'POST',
+                body: payload
+              })
+            .then(data => {
+                  if (data.success) {
+                  updateUser({
+                    nombre,
+                    email,
+                    telefono,
+                  });
+                    Swal.fire('Guardado', 'Datos actualizados', 'success');
+                    window.location.reload();
+                  }
+                })
+            .catch(() => Swal.fire('Error', 'Error al actualizar', 'error'));
+          }
+        });
+      };
+
 
   return (
     <section className='perfil'>
@@ -66,7 +118,7 @@ export default function perfil() {
               <h2 className="perfil-nombre">{user.nombre}</h2>
               <p className="perfil-subtitulo">Cliente frecuente</p>
               <form className="perfil-header-actions" onSubmit={handlelogout}>
-                <button className="perfil-btn perfil-btn-primario" type='button'>Editar perfil</button>
+                <button className="perfil-btn perfil-btn-primario" type='button' onClick={() => setForm(!form)}>Editar perfil</button>
                 <button className='perfil-btn perfil-btn-secundario' type='submit'>Cerrar Sesión</button>
               </form>
             </div>
@@ -75,14 +127,14 @@ export default function perfil() {
           <section className="perfil-seccion perfil-info">
             <h3 className="perfil-card-title">Información Personal</h3>
 
-            <div className="perfil-info-list">
+            {form === false ? <div className="perfil-info-list">
               <div className="perfil-info-item">
                 <span>Nombre</span>
                 <p>{user.nombre}</p>
               </div>
               <div className="perfil-info-item">
                 <span>Teléfono</span>
-                <p> {user.telefono ? '+52' + user.telefono : 'No has agregado un telefono'}</p>
+                <p> {user.telefono ? '+52 ' + user.telefono : 'No has agregado un telefono'}</p>
               </div>
               <div className="perfil-info-item">
                 <span>Correo</span>
@@ -90,9 +142,64 @@ export default function perfil() {
               </div>
               <div className="perfil-info-item">
                 <span>Miembro desde</span>
-                <p>{user.fecha_perfil}</p>
+                <p>{dayjs(user.fecha_perfil).format('DD/MM/YYYY')}</p>
               </div>
-            </div>
+            </div> 
+            :
+            <form className="perfil-form-list" onSubmit={handleFormSubmit}>
+              <div className="perfil-form-item">
+                <label>Nombre de Usuario</label>
+                <input
+                  type="text"
+                  name="nombre"
+                  defaultValue={user.nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  maxLength="50"
+                  pattern="^[^\s]+$"
+                  title="No se permiten espacios"
+                  required
+                />
+              </div>
+
+              <div className="perfil-form-item">
+                <label>Teléfono</label>
+                <input
+                  type="tel"
+                  name="telefono"
+                  defaultValue={user.telefono || ''}
+                  placeholder="Ej. 6691234567"
+                  onChange={(e) => setTelefono(e.target.value)}
+                  maxLength="10"
+                  pattern="^\d{10}$"
+                  title="Ingresa un número de teléfono válido"
+                />
+              </div>
+
+              <div className="perfil-form-item">
+                <label>Correo</label>
+                <input
+                  type="email"
+                  name="email"
+                  defaultValue={user.email}
+                  onChange={(e) => setEmail(e.target.value.replace(/\s/g, ''))}
+                  title="No se permiten espacios"
+                  maxLength="50"
+                  required
+                />
+              </div>
+
+              <div className="perfil-form-item">
+                <label>Miembro desde</label>
+                <input
+                  type="text"
+                  value={user.fecha_perfil}
+                  disabled
+                />
+              </div>
+              <button className="perfil-form-btn" type="submit">Guardar cambios</button>
+              <button className="perfil-form-btn" type="button" onClick={() => setForm(!form)}>Cancelar</button>
+            </form>
+            }
           </section>
         </div>
 
@@ -101,7 +208,7 @@ export default function perfil() {
             <div className="perfil-historial">
               <h3 className="perfil-card-title">Historial de citas</h3>
               <div className="perfil-actividad">
-                {console.log(history)}
+                {/* {console.log(history)} */}
                 {history.map((history, index) => (
                   <div key={index} tabIndex='0' className="perfil-actividad-item">
                     <div className="perfil-actividad-info">
