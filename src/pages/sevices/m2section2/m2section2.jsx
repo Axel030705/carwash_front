@@ -28,6 +28,7 @@ export default function m2section2() {
     const { dates, setDates } = useContext(DateContext);
     const [openModal, setOpenModal] = useState(false);
     const { user } = useContext(AuthContext);
+    const [showAll, setShowAll] = useState(false);
 
         useEffect(() => {
             fetchBase('api/servicios')
@@ -45,7 +46,7 @@ export default function m2section2() {
             {/* <form className='m2section2-form'>
                 <input type="text" placeholder='Busca tu servicio' className='m2section2-input'/>
             </form> */}
-            <div className='m2section2-swiper-container' style={{marginTop: '5%'}}>
+            <div className={`m2section2-swiper-container ${!showAll ? 'collapsed' : ''}`} style={{marginTop: '5%'}}>
                 {servicios.map((servicio, index) => (
                     <article className='m2section2-card' key={index}>
                         <img src={BASE_URL + servicio.imagen} alt="" className='m2section2-img'/>
@@ -60,6 +61,14 @@ export default function m2section2() {
                     </article>
                 ))}
             </div>
+            {servicios.length > 4 && (
+            <button
+                className="m2section2-more-button"
+                onClick={() => setShowAll(!showAll)}
+            >
+                {showAll ? 'Ver menos' : 'Ver más'}
+            </button>
+            )}
         </div>
         
         <Modal isOpen={openModal} isClose={() => setOpenModal(false)}>

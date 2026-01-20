@@ -145,6 +145,11 @@ html, body {
     border-radius: 25px;
 }
 
+.dates-services-option:hover{
+    border-color: var(--back-blue-dark);
+    cursor: pointer;
+}
+
 .dates-services-opcion-section1{
     margin-bottom: auto;
     width: 100%;
@@ -185,10 +190,15 @@ html, body {
   box-sizing: border-box;
 }
 
-.dates-services-input:checked + .dates-services-checkmark {
+.dates-services-input:checked + .dates-services-checkmark{
   background-color: var(--back-blue);
   color: white;
   border-color: var(--back-blue);
+  border-color: var(--back-blue-dark);
+}
+
+.dates-services-option:has(.dates-services-input:checked) {
+  border-color: var(--back-blue-dark);
 }
 
 .dates-services-option-title{
@@ -219,6 +229,23 @@ html, body {
     font-weight: 800;
     font-size: clamp(1rem, 1.5vw, 2.5rem);
     color: black;
+}
+
+.dates-more-button{
+    margin: 0 auto;
+    width: 70%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 3% 0;
+    color: rgb(255, 255, 255);
+    font-family: var(--montserrat);
+    font-weight: 600;
+    font-size: clamp(0.7rem, 1vw, 1.5rem);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--back-blue-dark);
+    display: none;
 }
 
 
@@ -817,4 +844,27 @@ html, body {
   .dates-input-icon {
     left: 10px;
   }
+
+    .dates-services-content.collapsed {
+      max-height: 800px; /* 3–4 cards */
+      overflow: hidden;
+      position: relative;
+    }
+
+    
+    .dates-more-button{
+        display: block;
+    }
+
+    .dates-services-content.collapsed::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to bottom, transparent, white);
+    }
 }
+
+

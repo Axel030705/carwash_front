@@ -33,7 +33,7 @@ export default function Dates() {
     const [activeStep, setActiveStep] = useState('');
     const [ocupadas , setOcupadas] = useState([]);
     const isMobile = useMediaQuery('(max-width:768px)');
-
+    const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
         fetchBase('api/servicios')
@@ -84,11 +84,8 @@ export default function Dates() {
         const firstInvalid = requiredFields.find(f => !f.value);
 
         if (!firstInvalid) {
-
             savedates(required);
-            // console.log(dates);
         }else {
-            // alert('Completa los campos obligatorios');
             setActiveStep(firstInvalid.step);
             scrollToSection(firstInvalid.step);
         }
@@ -141,7 +138,7 @@ export default function Dates() {
                         <h3 className='dates-global-title'>Elige tu Servicios</h3>
                         {activeStep === 'services' && <p className='dates-global-subtitle'>Selecciona un servicio</p>}
                     </div>
-                    <div className='dates-services-content'>
+                    <div className={`dates-services-content ${!showAll ? 'collapsed' : ''}`} style={{marginTop: '5%'}}>
                         {servicios.map((servicio, index) => (
                             <label key={index} className="dates-services-option" onClick={() => setDates(prev => ({...prev, services: servicio}))}>
                             <div className="dates-services-opcion-section1">
@@ -165,6 +162,14 @@ export default function Dates() {
                             </label>
                         ))}
                     </div>
+                    {servicios.length > 4 && (
+                        <button
+                            className="dates-more-button"
+                            onClick={() => setShowAll(!showAll)}
+                        >
+                            {showAll ? 'Ver menos' : 'Ver más'}
+                        </button>
+                    )}
                 </div>
                 <div className='dates-globals-container' id='dates-calendar-container'>
                     <div className='dates-global-header'>

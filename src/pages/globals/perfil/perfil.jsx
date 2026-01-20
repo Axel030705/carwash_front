@@ -116,7 +116,7 @@ export default function perfil() {
 
             <div className="perfil-header-info">
               <h2 className="perfil-nombre">{user.nombre}</h2>
-              <p className="perfil-subtitulo">Cliente frecuente</p>
+              {/* <p className="perfil-subtitulo">Cliente frecuente</p> */}
               <form className="perfil-header-actions" onSubmit={handlelogout}>
                 <button className="perfil-btn perfil-btn-primario" type='button' onClick={() => setForm(!form)}>Editar perfil</button>
                 <button className='perfil-btn perfil-btn-secundario' type='submit'>Cerrar Sesión</button>

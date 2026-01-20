@@ -20,7 +20,6 @@ export default function Login() {
     const data = await login({ username, password });
 
     if (data.success) {
-      alert('Login exitoso: ' + data.user.nombre);
       localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/');
     } else {
