@@ -44,7 +44,7 @@ export default function Login() {
       console.log(data);
 
       if(data.success) {
-        alert('Registro exitoso');
+        Swal.fire('Registrado Exitosamente', 'Bienvenido de nuevo', 'success');
         navigate('/login');
       }else {
         alert(data.message);

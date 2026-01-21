@@ -56,8 +56,8 @@
 
 .login-input-group input:focus {
   outline: none;
-  border-color: #a78bfa;
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25);
+  border-color: var(--back-blue-darker);
+  box-shadow: 0 0 0 3px #127fed5e;
 }
 
 /* ===== FORGOT ===== */
@@ -75,7 +75,7 @@
 }
 
 .login-forgot a:hover {
-  color: #a78bfa;
+  color: var(--back-blue-dark);
   text-decoration: underline;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .login-sign:hover {
-  background-color: #8b5cf6;
+  background-color: var(--back-blue-darker);
   transform: translateY(-1px);
 }
 
@@ -117,16 +117,17 @@
 .login-signup {
   margin-top: clamp(0.8rem, 1.1vw, 1.6rem);
   text-align: center;
-  font-size: clamp(0.1rem, .7vw, 1rem);
+  font-size: clamp(0.7rem, .7vw, 1rem);
   color: #6b7280;
   font-family: var(--montserrat);
 }
 
 .login-signup a {
-  color: #a78bfa;
+  color: var(--back-blue-dark);
   font-weight: 500;
   text-decoration: none;
   font-family: var(--montserrat);
+
 }
 
 .login-signup a:hover {

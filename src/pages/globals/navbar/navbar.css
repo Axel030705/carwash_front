@@ -95,7 +95,7 @@
     object-fit: contain;
 }
 
-/* ===================== MOBILE MENU ===================== */
+/* =====================  navbar de telefono ===================== */
 
 .navbar-toggle {
   display: none;
@@ -111,7 +111,7 @@
   position: fixed;
   top: 0;
   right: -100%;
-  width: 75%;
+  width: 60%;
   max-width: 320px;
   height: 100vh;
   background-color: white;
@@ -148,7 +148,6 @@
   cursor: pointer;
 }
 
-/* ===================== MEDIA QUERY ===================== */
 
 @media (max-width: 768px) {
 
@@ -176,4 +175,15 @@
   .navbar-mobile .navbar-link2 {
     font-size: 1.2rem;
   }
+
+   .navbar-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-link2 {
+    width: 100%;
+    text-align: center;
+  }
+  
 }
