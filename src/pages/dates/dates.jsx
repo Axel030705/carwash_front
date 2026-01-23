@@ -67,7 +67,7 @@ export default function Dates() {
             time: dates.time ? dates.time.format('HH:mm') : null,
             name: dates.data?.name,
             phone: dates.data?.phone,
-            car: dates.data?.car,
+            // car: dates.data?.car,
             pay_method: dates.pay_method
         };
 
@@ -77,7 +77,7 @@ export default function Dates() {
             { value: dates.time, step: 'calendar' },
             { value: dates.data?.name, step: 'data' },
             { value: dates.data?.phone, step: 'data' },
-            { value: dates.data?.car, step: 'data' },
+            // { value: dates.data?.car, step: 'data' },
             { value: dates.pay_method, step: 'payment' }
         ];
 
@@ -108,7 +108,7 @@ export default function Dates() {
         console.log('DATE ENVIADA:', day);
         fetchBase(`api/hours?date=${day}`)
             .then(res => {
-                console.log('RESPUESTA BACKEND:', res);
+                // console.log('RESPUESTA BACKEND:', res);
             if (res.success && Array.isArray(res.data)) {
                 const horasOcupadas = [...new Set(
                 res.data.map(h => Number(h.hora_ocupada))
@@ -129,7 +129,7 @@ export default function Dates() {
     <section className='dates'>
         <div className='dates-container'>
             <div className='dates-selection-container'>
-                <h2 className='dates-selection-title'>Reserva tu lavado</h2>
+                <h2 className='dates-selection-title'>Reserva tu Cita</h2>
                 <p className='dates-selection-text'>Completa el formulario en 4 simples pasos</p>
 
                 <div className='dates-globals-container' id='services'>
@@ -277,7 +277,7 @@ export default function Dates() {
                                 />
                             </div>
                         </div>
-                        <div className="dates-input-group">
+                        {/* <div className="dates-input-group">
                             <label htmlFor="nombre" className="dates-input-label">Marca y Modelo</label>
                             <div className="dates-input-wrapper">
                                 <span className="dates-input-icon">🚘</span>
@@ -320,7 +320,7 @@ export default function Dates() {
                                 }
                                 />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='dates-globals-container' id='payment'>
@@ -386,7 +386,7 @@ export default function Dates() {
                 <div className='dates-resume-line'></div>
                 <div className='dates-resume-total'>
                     <p className='dates-resume-total-title'>Total a pagar</p>
-                    <p className='dates-resume-total-price'>$25</p>
+                    <p className='dates-resume-total-price'>{dates.services?.precio}</p>
                 </div>
                 <button className='dates-resume-button' onClick={handleDate}>
                     Confirmar Reserva 

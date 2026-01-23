@@ -80,10 +80,7 @@ export default function m2section2() {
                         <p className='m1section2-modal-price'>${item.precio}</p>
                     </div>
                     <p className='m1section2-modal-description'>{item.descripcion}</p>
-                    {user ?
-                        <button className='m1section2-card-button' onClick={() => {setDates({...dates, services: item}); handleNavigate()}}>Agendar cita de este servicio</button> :
-                        <button className='m1section2-card-button' onClick={() => navigate('/login')}>Inicia sesión para agendar</button>
-                    }
+                    <button className='m1section2-card-button' onClick={() => {setDates({...dates, services: item}); handleNavigate()}}>Agendar cita de este servicio</button> :
                 </div>
             </div>
         </Modal>

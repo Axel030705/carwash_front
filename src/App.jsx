@@ -33,11 +33,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/servicios" element={<Services />} />
                 <Route path="/faq" element={<FAQ />} />
-                <Route path="/dates" element={
-                  <ProtectedRoute>
-                    <Dates />
-                  </ProtectedRoute>
-                } />
+                <Route path="/dates" element={<Dates />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/perfil" element={
@@ -45,11 +41,7 @@ function App() {
                     <Perfil />
                   </ProtectedRoute>
                 } />
-                <Route path="/confirmdate" element={
-                  <ProtectedRoute>
-                    <ConfirmDate />
-                  </ProtectedRoute>
-                } />
+                <Route path="/confirmdate" element={<ConfirmDate />} />
               </Routes>
             <Footer />
           </div>

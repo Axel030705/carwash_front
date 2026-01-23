@@ -29,10 +29,10 @@ export default function Navbar() {
           <NavLink to="/" className="navbar-link">Inicio</NavLink>
           <NavLink to="/servicios" className="navbar-link">Servicios</NavLink>
           <NavLink to="/faq" className="navbar-link">FAQ</NavLink>
+          <NavLink to="/dates" className="navbar-link2">Agendar Cita</NavLink>
 
           {user ? (
             <>
-              <NavLink to="/dates" className="navbar-link2">Agendar Cita</NavLink>
               <NavLink to="/perfil" className="navbar-link2">Perfil</NavLink>
             </>
           ) : (

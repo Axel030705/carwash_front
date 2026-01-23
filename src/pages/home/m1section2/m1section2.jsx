@@ -45,7 +45,7 @@ export default function M1section2() {
     <section className='m1section2'>
         <div className='m1section2-container'>
             <h2 className='m1section2-title'>Nuestros Servicios  Premium</h2>
-            <p className='m1section2-subtitle'>Soluciones completas para el cuidado de tu vehiculo</p>
+            <p className='m1section2-subtitle'>Soluciones completas para el cuidado de tu imagen</p>
             <div className='m1section2-swiper-container'>
                 {servicios.map((servicio, index) => (
                     <article className='m1section2-card' key={index}>
